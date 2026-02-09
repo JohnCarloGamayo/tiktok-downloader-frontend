@@ -36,10 +36,12 @@ Output goes to `dist/`.
 1. Push the `frontend/` folder (or set **Root Directory** to `frontend` in Vercel).
 2. Set the environment variable `VITE_API_BASE_URL` to your deployed backend URL:
    ```
-   VITE_API_BASE_URL=https://web-production-14dc.up.railway.app
+   VITE_API_BASE_URL=https://your-backend-name.onrender.com
    ```
+   **Important**: Replace with your actual Render backend URL (no trailing slash)
 3. Vercel will auto-detect Vite and build accordingly.
 
-## Production Backend
+## Production Deployment
 
-The backend is deployed at: **https://web-production-14dc.up.railway.app**
+- **Frontend**: https://tiktok-downloader-byjcg.vercel.app/
+- **Backend**: Deploy to Render (see backend README for instructions)

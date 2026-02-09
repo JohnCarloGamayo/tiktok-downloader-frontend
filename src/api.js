@@ -1,7 +1,7 @@
 // Base URL for the backend API.
 // In development Vite proxies /api → localhost:8000.
 // In production, set VITE_API_BASE_URL to your deployed backend URL.
-const API_BASE = import.meta.env.VITE_API_BASE_URL || "";
+const API_BASE = (import.meta.env.VITE_API_BASE_URL || "").replace(/\/$/, "");
 
 /**
  * Get video information/preview from a TikTok URL.
