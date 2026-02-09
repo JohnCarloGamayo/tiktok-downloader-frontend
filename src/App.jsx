@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { getVideoInfo, downloadVideo, formatNumber } from "./api";
+import AdModal from "./AdModal";
 
 function App() {
   const [url, setUrl] = useState("");
@@ -9,6 +10,8 @@ function App() {
   const [message, setMessage] = useState(null);
   const [videoInfo, setVideoInfo] = useState(null);
   const [downloadingFormat, setDownloadingFormat] = useState(null);
+  const [showAd, setShowAd] = useState(false);
+  const [pendingFormat, setPendingFormat] = useState(null);
 
   const isValidUrl = (u) => {
     return u.includes("tiktok.com") || u.includes("vm.tiktok.com") || u.includes("vt.tiktok.com");
@@ -38,16 +41,23 @@ function App() {
     }
   };
 
-  const handleDownload = async (format) => {
+  const handleDownload = (format) => {
     if (!videoInfo) return;
+    setPendingFormat(format);
+    setShowAd(true);
+  };
+
+  const handleAdComplete = async () => {
+    setShowAd(false);
+    if (!pendingFormat) return;
 
     setLoading(true);
-    setDownloadingFormat(format);
+    setDownloadingFormat(pendingFormat);
     setProgress(0);
     setMessage(null);
 
     try {
-      const { blob, filename } = await downloadVideo(videoInfo.video_url, format, setProgress);
+      const { blob, filename } = await downloadVideo(videoInfo.video_url, pendingFormat, setProgress);
 
       const a = document.createElement("a");
       a.href = URL.createObjectURL(blob);
@@ -66,7 +76,13 @@ function App() {
     } finally {
       setLoading(false);
       setDownloadingFormat(null);
+      setPendingFormat(null);
     }
+  };
+
+  const handleAdCancel = () => {
+    setShowAd(false);
+    setPendingFormat(null);
   };
 
   const handleKeyDown = (e) => {
@@ -281,6 +297,9 @@ function App() {
       <footer className="footer">
         <p>For personal use only. Respect content creators' rights.</p>
       </footer>
+
+      {/* Ad Modal */}
+      {showAd && <AdModal onComplete={handleAdComplete} onCancel={handleAdCancel} />}
     </div>
   );
 }
