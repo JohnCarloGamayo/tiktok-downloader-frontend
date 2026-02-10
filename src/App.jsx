@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { getVideoInfo, downloadVideo, formatNumber } from "./api";
 import AdModal from "./AdModal";
+import PrivacyPolicy from "./PrivacyPolicy";
+import About from "./About";
 
 function App() {
   const [url, setUrl] = useState("");
@@ -12,6 +14,7 @@ function App() {
   const [downloadingFormat, setDownloadingFormat] = useState(null);
   const [showAd, setShowAd] = useState(false);
   const [pendingFormat, setPendingFormat] = useState(null);
+  const [currentPage, setCurrentPage] = useState("home");
 
   const isValidUrl = (u) => {
     return u.includes("tiktok.com") || u.includes("vm.tiktok.com") || u.includes("vt.tiktok.com");
@@ -96,6 +99,39 @@ function App() {
     setProgress(0);
   };
 
+  // Handle page navigation
+  if (currentPage === "privacy") {
+    return (
+      <div className="app">
+        <PrivacyPolicy onBack={() => setCurrentPage("home")} />
+        <footer className="footer">
+          <div className="footer-links">
+            <button onClick={() => setCurrentPage("home")}>Home</button>
+            <span>•</span>
+            <button onClick={() => setCurrentPage("about")}>About</button>
+          </div>
+          <p>For personal use only. Respect content creators' rights.</p>
+        </footer>
+      </div>
+    );
+  }
+
+  if (currentPage === "about") {
+    return (
+      <div className="app">
+        <About onBack={() => setCurrentPage("home")} />
+        <footer className="footer">
+          <div className="footer-links">
+            <button onClick={() => setCurrentPage("home")}>Home</button>
+            <span>•</span>
+            <button onClick={() => setCurrentPage("privacy")}>Privacy Policy</button>
+          </div>
+          <p>For personal use only. Respect content creators' rights.</p>
+        </footer>
+      </div>
+    );
+  }
+
   return (
     <div className="app">
       <div className="card">
@@ -108,6 +144,43 @@ function App() {
           </div>
           <h1>TikTok Downloader</h1>
           <p className="subtitle">Download TikTok videos in HD, with watermark, or as MP3</p>
+          
+          {/* Description */}
+          <div className="description">
+            <p>
+              Fast, free, and easy-to-use TikTok video downloader with no signup required. 
+              Download TikTok videos in high quality without watermark, save them with the 
+              original watermark, or extract audio as MP3 files. Our tool works with all 
+              TikTok links and processes downloads instantly.
+            </p>
+            <p>
+              Simply paste any TikTok video URL, preview the content, and choose your preferred 
+              format. No registration, no payment, no hassle – just paste and download!
+            </p>
+          </div>
+
+          {/* Instructions */}
+          <div className="instructions">
+            <h2>How to Use</h2>
+            <ol>
+              <li>
+                <strong>Copy URL:</strong> Open TikTok app or website, find the video you want, 
+                and copy its link (tap Share → Copy Link)
+              </li>
+              <li>
+                <strong>Paste & Preview:</strong> Paste the URL in the input box above and click 
+                the search icon to preview video details
+              </li>
+              <li>
+                <strong>Choose Format:</strong> Select your preferred download option – HD without 
+                watermark, with watermark, or MP3 audio only
+              </li>
+              <li>
+                <strong>Download:</strong> After a short ad (skip after 5 seconds), your download 
+                will start automatically
+              </li>
+            </ol>
+          </div>
         </div>
 
         {/* URL Input Section */}
@@ -295,6 +368,11 @@ function App() {
       </div>
 
       <footer className="footer">
+        <div className="footer-links">
+          <button onClick={() => setCurrentPage("privacy")}>Privacy Policy</button>
+          <span>•</span>
+          <button onClick={() => setCurrentPage("about")}>About / Disclaimer</button>
+        </div>
         <p>For personal use only. Respect content creators' rights.</p>
       </footer>
 
