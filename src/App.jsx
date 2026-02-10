@@ -134,56 +134,20 @@ function App() {
 
   return (
     <div className="app">
-      <div className="card">
-        {/* Header */}
-        <div className="header">
-          <div className="logo">
-            <svg viewBox="0 0 24 24" fill="currentColor">
-              <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
-            </svg>
-          </div>
-          <h1>TikTok Downloader</h1>
-          <p className="subtitle">Download TikTok videos in HD, with watermark, or as MP3</p>
-          
-          {/* Description */}
-          <div className="description">
-            <p>
-              Fast, free, and easy-to-use TikTok video downloader with no signup required. 
-              Download TikTok videos in high quality without watermark, save them with the 
-              original watermark, or extract audio as MP3 files. Our tool works with all 
-              TikTok links and processes downloads instantly.
-            </p>
-            <p>
-              Simply paste any TikTok video URL, preview the content, and choose your preferred 
-              format. No registration, no payment, no hassle – just paste and download!
-            </p>
+      <div className="main-content">
+        <div className="card">
+          {/* Header */}
+          <div className="header">
+            <div className="logo">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
+              </svg>
+            </div>
+            <h1>TikTok Downloader</h1>
+            <p className="subtitle">Download TikTok videos in HD, with watermark, or as MP3</p>
           </div>
 
-          {/* Instructions */}
-          <div className="instructions">
-            <h2>How to Use</h2>
-            <ol>
-              <li>
-                <strong>Copy URL:</strong> Open TikTok app or website, find the video you want, 
-                and copy its link (tap Share → Copy Link)
-              </li>
-              <li>
-                <strong>Paste & Preview:</strong> Paste the URL in the input box above and click 
-                the search icon to preview video details
-              </li>
-              <li>
-                <strong>Choose Format:</strong> Select your preferred download option – HD without 
-                watermark, with watermark, or MP3 audio only
-              </li>
-              <li>
-                <strong>Download:</strong> After a short ad (skip after 5 seconds), your download 
-                will start automatically
-              </li>
-            </ol>
-          </div>
-        </div>
-
-        {/* URL Input Section */}
+          {/* URL Input Section */}
         {!videoInfo ? (
           <div className="input-section">
             <div className="input-wrapper">
@@ -365,6 +329,58 @@ function App() {
             {message.text}
           </div>
         )}
+        </div>
+
+        {/* Info Cards Grid */}
+        <div className="info-grid">
+          {/* Description Card */}
+          <div className="info-card description-card">
+            <h2>
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M13 9h-2V7h2m0 10h-2v-6h2m-1-9A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2z"/>
+              </svg>
+              About This Tool
+            </h2>
+            <p>
+              Fast, free, and easy-to-use TikTok video downloader with no signup required. 
+              Download TikTok videos in high quality without watermark, save them with the 
+              original watermark, or extract audio as MP3 files. Our tool works with all 
+              TikTok links and processes downloads instantly.
+            </p>
+            <p>
+              Simply paste any TikTok video URL, preview the content, and choose your preferred 
+              format. No registration, no payment, no hassle – just paste and download!
+            </p>
+          </div>
+
+          {/* Instructions Card */}
+          <div className="info-card instructions-card">
+            <h2>
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M9 5v2h6.59L4 18.59 5.41 20 17 8.41V15h2V5z"/>
+              </svg>
+              How to Use
+            </h2>
+            <ol>
+              <li>
+                <strong>Copy URL:</strong> Open TikTok app or website, find the video you want, 
+                and copy its link (tap Share → Copy Link)
+              </li>
+              <li>
+                <strong>Paste & Preview:</strong> Paste the URL in the input box above and click 
+                the search icon to preview video details
+              </li>
+              <li>
+                <strong>Choose Format:</strong> Select your preferred download option – HD without 
+                watermark, with watermark, or MP3 audio only
+              </li>
+              <li>
+                <strong>Download:</strong> After a short ad (skip after 5 seconds), your download 
+                will start automatically
+              </li>
+            </ol>
+          </div>
+        </div>
       </div>
 
       <footer className="footer">

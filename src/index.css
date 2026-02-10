@@ -29,6 +29,15 @@ body {
   padding: 2rem 1rem;
 }
 
+.main-content {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
 /* ───────── Card ───────── */
 .card {
   background: #ffffff;
@@ -37,6 +46,105 @@ body {
   width: 100%;
   max-width: 560px;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+/* ───────── Info Grid ───────── */
+.info-grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.info-card {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.info-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.info-card h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1a1a2e;
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.info-card h2 svg {
+  width: 24px;
+  height: 24px;
+  color: #fe2c55;
+}
+
+.info-card p {
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: #4b5563;
+  margin-bottom: 0.75rem;
+}
+
+.info-card p:last-child {
+  margin-bottom: 0;
+}
+
+.description-card {
+  border-left: 4px solid #3b82f6;
+}
+
+.instructions-card {
+  border-left: 4px solid #10b981;
+}
+
+.instructions-card ol {
+  list-style: none;
+  counter-reset: step-counter;
+  padding: 0;
+  margin: 0;
+}
+
+.instructions-card li {
+  counter-increment: step-counter;
+  position: relative;
+  padding-left: 2.5rem;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: #4b5563;
+}
+
+.instructions-card li:last-child {
+  margin-bottom: 0;
+}
+
+.instructions-card li::before {
+  content: counter(step-counter);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 28px;
+  height: 28px;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: white;
+  font-weight: 700;
+  font-size: 0.85rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.instructions-card strong {
+  color: #1a1a2e;
+  font-weight: 600;
 }
 
 /* ───────── Header ───────── */
@@ -75,85 +183,6 @@ body {
   font-size: 0.95rem;
   color: #6b7280;
   font-weight: 400;
-}
-
-/* ───────── Description & Instructions ───────── */
-.description {
-  margin-top: 1.5rem;
-  padding: 1.25rem;
-  background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
-  border-radius: 14px;
-  border-left: 4px solid #3b82f6;
-}
-
-.description p {
-  font-size: 0.9rem;
-  line-height: 1.6;
-  color: #374151;
-  margin-bottom: 0.75rem;
-}
-
-.description p:last-child {
-  margin-bottom: 0;
-}
-
-.instructions {
-  margin-top: 1.5rem;
-  padding: 1.25rem;
-  background: #f9fafb;
-  border-radius: 14px;
-  border: 2px solid #e5e7eb;
-}
-
-.instructions h2 {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #1a1a2e;
-  margin-bottom: 1rem;
-  text-align: left;
-}
-
-.instructions ol {
-  list-style: none;
-  counter-reset: step-counter;
-  padding: 0;
-  margin: 0;
-}
-
-.instructions li {
-  counter-increment: step-counter;
-  position: relative;
-  padding-left: 2.5rem;
-  margin-bottom: 1rem;
-  font-size: 0.9rem;
-  line-height: 1.6;
-  color: #4b5563;
-}
-
-.instructions li:last-child {
-  margin-bottom: 0;
-}
-
-.instructions li::before {
-  content: counter(step-counter);
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 28px;
-  height: 28px;
-  background: linear-gradient(135deg, #fe2c55 0%, #ff6b6b 100%);
-  color: white;
-  font-weight: 700;
-  font-size: 0.85rem;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.instructions strong {
-  color: #1a1a2e;
-  font-weight: 600;
 }
 
 /* ───────── Input Section ───────── */
@@ -805,6 +834,12 @@ body {
 }
 
 /* ───────── Responsive ───────── */
+@media (max-width: 900px) {
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 @media (max-width: 560px) {
   .card {
     padding: 1.75rem 1.25rem;
@@ -859,5 +894,13 @@ body {
   .option-btn svg {
     width: 24px;
     height: 24px;
+  }
+
+  .info-card {
+    padding: 1.5rem;
+  }
+
+  .info-card h2 {
+    font-size: 1.1rem;
   }
 }
