@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { getVideoInfo, downloadVideo, formatNumber } from "./api";
-import AdModal from "./AdModal";
+import AdUnit from "./AdUnit";
 import PrivacyPolicy from "./PrivacyPolicy";
 import About from "./About";
 
@@ -12,8 +12,6 @@ function App() {
   const [message, setMessage] = useState(null);
   const [videoInfo, setVideoInfo] = useState(null);
   const [downloadingFormat, setDownloadingFormat] = useState(null);
-  const [showAd, setShowAd] = useState(false);
-  const [pendingFormat, setPendingFormat] = useState(null);
   const [currentPage, setCurrentPage] = useState("home");
 
   const isValidUrl = (u) => {
@@ -44,23 +42,16 @@ function App() {
     }
   };
 
-  const handleDownload = (format) => {
+  const handleDownload = async (format) => {
     if (!videoInfo) return;
-    setPendingFormat(format);
-    setShowAd(true);
-  };
-
-  const handleAdComplete = async () => {
-    setShowAd(false);
-    if (!pendingFormat) return;
 
     setLoading(true);
-    setDownloadingFormat(pendingFormat);
+    setDownloadingFormat(format);
     setProgress(0);
     setMessage(null);
 
     try {
-      const { blob, filename } = await downloadVideo(videoInfo.video_url, pendingFormat, setProgress);
+      const { blob, filename } = await downloadVideo(videoInfo.video_url, format, setProgress);
 
       const a = document.createElement("a");
       a.href = URL.createObjectURL(blob);
@@ -79,13 +70,7 @@ function App() {
     } finally {
       setLoading(false);
       setDownloadingFormat(null);
-      setPendingFormat(null);
     }
-  };
-
-  const handleAdCancel = () => {
-    setShowAd(false);
-    setPendingFormat(null);
   };
 
   const handleKeyDown = (e) => {
@@ -375,11 +360,14 @@ function App() {
                 watermark, with watermark, or MP3 audio only
               </li>
               <li>
-                <strong>Download:</strong> After a short ad (skip after 5 seconds), your download 
-                will start automatically
+                <strong>Download:</strong> Click your preferred format button and your download 
+                will start immediately
               </li>
             </ol>
           </div>
+
+          {/* Ad Unit */}
+          <AdUnit slot="1234567890" style={{ marginTop: "1.5rem" }} />
         </div>
       </div>
 
@@ -391,9 +379,6 @@ function App() {
         </div>
         <p>For personal use only. Respect content creators' rights.</p>
       </footer>
-
-      {/* Ad Modal */}
-      {showAd && <AdModal onComplete={handleAdComplete} onCancel={handleAdCancel} />}
     </div>
   );
 }

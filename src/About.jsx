@@ -1,3 +1,5 @@
+import AdUnit from "./AdUnit";
+
 function About({ onBack }) {
   return (
     <div className="card legal-page">
@@ -10,6 +12,9 @@ function About({ onBack }) {
 
       <h1>About & Disclaimer</h1>
       <p className="updated">Last updated: February 10, 2026</p>
+
+      {/* Ad Unit */}
+      <AdUnit slot="1234567890" style={{ marginBottom: "2rem" }} />
 
       <section>
         <h2>About This Tool</h2>

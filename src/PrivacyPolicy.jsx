@@ -1,3 +1,5 @@
+import AdUnit from "./AdUnit";
+
 function PrivacyPolicy({ onBack }) {
   return (
     <div className="card legal-page">
@@ -10,6 +12,9 @@ function PrivacyPolicy({ onBack }) {
 
       <h1>Privacy Policy</h1>
       <p className="updated">Last updated: February 10, 2026</p>
+
+      {/* Ad Unit */}
+      <AdUnit slot="1234567890" style={{ marginBottom: "2rem" }} />
 
       <section>
         <h2>Information Collection</h2>

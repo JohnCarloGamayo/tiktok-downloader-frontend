@@ -704,6 +704,19 @@ body {
   margin-bottom: 1.5rem;
 }
 
+/* ───────── Ad Units ───────── */
+.ad-unit {
+  width: 100%;
+  min-height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f9fafb;
+  border-radius: 12px;
+  padding: 1rem;
+  border: 1px dashed #d1d5db;
+}
+
 /* ───────── Ad Modal ───────── */
 .ad-modal-overlay {
   position: fixed;
